@@ -6,9 +6,32 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Vercel에 오신 것을 매우 환영합니다!</h1>
-<p>현재 시간: <span
-id="datetime"></span></p>
+<h1>Vercel에 오신 것을 아주 환영합니다!</h1>
+<p>현재 시간: <span id="datetime"></span></p>
+
+<!-- Contact Form 추가 시작 -->
+<h2>Contact Form</h2>
+<form id="contact-form">
+  <label for="name">이름:</label><br>
+  <input type="text" id="name" name="name" required><br><br>
+  
+  <label for="email">이메일:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
+  
+  <label for="message">메시지:</label><br>
+  <textarea id="message" name="message" rows="4" required></textarea><br><br>
+  
+  <button type="submit">보내기</button>
+</form>
+<!-- Contact Form 추가 끝 -->
+
+<!-- GitHub 링크 추가 -->
+<p>
+  <a href="https://github.com/dlgusxor12/OSSW_11week" target="_blank">
+    📂 GitHub 저장소 바로가기
+  </a>
+</p>
+
 <script src="script.js"></script>
 </body>
 </html>
