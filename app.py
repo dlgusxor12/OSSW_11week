@@ -4,11 +4,10 @@ from datetime import datetime, timedelta, timezone
 
 def get_weather(city="서울"):
     API_KEY = "jb14LGSONSwtrptaTUfUlGp3fAc0f1MJ78s/tRyt0OiffhCXohmDlqutYyCKdHiOTQblmUoVaw27l/MYJBN29g=="
-    nx, ny = 60, 127  # 서울시청 격자 좌표
-    now = datetime.now(timezone.utc) + timedelta(hours=9)  # KST 기준
+    nx, ny = 60, 127
+    now = datetime.now(timezone.utc) + timedelta(hours=9)
     base_date = now.strftime('%Y%m%d')
 
-    # 가장 가까운 발표 시간 선택
     hour = now.hour
     if hour < 2:
         base_time = "2300"
@@ -47,21 +46,12 @@ def get_weather(city="서울"):
         data = response.json()
         items = data['response']['body']['items']['item']
 
-        today = now.strftime('%Y%m%d')
-        target_time = now.strftime('%H') + "00"
-
-        temperature = None
-
+        # 가장 빠른 TMP 값 추출
         for item in items:
-            if item['fcstDate'] == today and item['fcstTime'] == target_time:
-                if item['category'] == 'TMP':
-                    temperature = item['fcstValue']
-                    break
+            if item['category'] == 'TMP':
+                return f"{city}의 현재 기온: {item['fcstValue']}°C"
 
-        if temperature:
-            return f"{city}의 현재 기온: {temperature}°C"
-        else:
-            return "기온 정보를 찾을 수 없습니다."
+        return "기온 정보를 찾을 수 없습니다."
 
     except Exception as e:
         return f"날씨 정보 오류: {e}"
